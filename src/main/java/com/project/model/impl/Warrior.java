@@ -29,4 +29,12 @@ public class Warrior {
     public boolean isAlive() {
         return health > 0;
     }
+
+    public static Warrior getUnit(Class<? extends Warrior> clazz) {
+        if (clazz == Warrior.class)
+            return new Warrior();
+        if (clazz == Knight.class)
+            return new Knight();
+        throw new NoClassDefFoundError("no such class");
+    }
 }
