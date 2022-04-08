@@ -30,11 +30,17 @@ public class Warrior {
         return health > 0;
     }
 
+    public int getHealth() {
+        return health;
+    }
+
     public static Warrior getUnit(Class<? extends Warrior> clazz) {
         if (clazz == Warrior.class)
             return new Warrior();
         if (clazz == Knight.class)
             return new Knight();
+        if (clazz == Defender.class)
+            return new Defender();
         throw new NoClassDefFoundError("no such class");
     }
 }

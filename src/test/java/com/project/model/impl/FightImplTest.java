@@ -7,6 +7,11 @@ import static org.junit.Assert.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class FightImplTest {
@@ -19,23 +24,18 @@ class FightImplTest {
         fight = new FightImpl();
     }
 
-    //    prepare_test(middle_code='''carl = Warrior() jim = Knight()''',
-//    test="fight(carl, jim)",answer=False)
-    @Test
-    void fightTest1() {
-        enemy1 = new Warrior();
-        enemy2 = new Knight();
-        Fight fight = new FightImpl();
-        assertFalse(fight.fight(enemy1, enemy2));
+    @ParameterizedTest
+    @MethodSource
+    void fight(boolean expected, Warrior enemy1, Warrior enemy2) {
+        assertEquals(expected, fight.fight(enemy1, enemy2));
     }
 
-    //    prepare_test(middle_code='''ramon = Knight() slevin = Warrior()''',
-//    test="fight(ramon, slevin)", answer=True)
-    @Test
-    void fightTest2() {
-        enemy1 = new Knight();
-        enemy2 = new Warrior();
-        assertTrue(fight.fight(enemy1, enemy2));
+    static Stream<Arguments> fight() {
+        return Stream.of(
+                Arguments.of(false, new Warrior(), new Knight()),
+                Arguments.of(true, new Knight(), new Warrior())
+
+        );
     }
 
     //    prepare_test(middle_code='''bob = Warrior()mars = Warrior()
@@ -57,7 +57,8 @@ class FightImplTest {
         fight.fight(enemy1, enemy2);
         assertTrue(enemy1.isAlive());
     }
-//    prepare_test(middle_code='''husband = Warrior()wife = Warrior()
+
+    //    prepare_test(middle_code='''husband = Warrior()wife = Warrior()
 //    fight(husband, wife)''',test="wife.is_alive",answer=False)
     @Test
     void fightTest5() {
@@ -76,7 +77,8 @@ class FightImplTest {
         fight.fight(enemy1, enemy2);
         assertTrue(enemy2.isAlive());
     }
-//    prepare_test(middle_code='''unit_1 = Warrior() unit_2 = Knight() unit_3 = Warrior()
+
+    //    prepare_test(middle_code='''unit_1 = Warrior() unit_2 = Knight() unit_3 = Warrior()
 //            fight(unit_1, unit_2)''',
 //    test="fight(unit_2, unit_3)",answer=False)
     @Test
@@ -85,8 +87,29 @@ class FightImplTest {
         enemy2 = new Knight();
         fight.fight(new Warrior(), enemy2);
         assertFalse(fight.fight(enemy2, enemy1));
-
     }
 
+    //unit_1 = Defender() unit_2 = Rookie()
+//    fight(unit_1, unit_2)''',
+//    test="unit_1.health", answer=60)
+    @Test
+    void fightTest8() {
+        enemy1 = new Defender();
+        enemy2 = new Rookie();
+        fight.fight(enemy1, enemy2);
+        assertEquals(60, enemy1.getHealth());
+    }
+//     unit_1 = Defender()unit_2 = Rookie() unit_3 = Warrior()
+//    fight(unit_1, unit_2)''',
+//    test="fight(unit_1, unit_3)",
+//    answer=True
 
+    @Test
+    void fightTest9() {
+        enemy1 = new Defender();
+        enemy2 = new Rookie();
+
+        fight.fight(enemy1, enemy2);
+        assertTrue(fight.fight(enemy1, new Warrior()));
+    }
 }
