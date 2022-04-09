@@ -4,6 +4,7 @@ public class Warrior {
 
     private static final int ATTACK = 5;
     private static final int START_HEALTH = 50;
+    private Warrior soldierBehind;
     private int health;
 
 
@@ -44,6 +45,14 @@ public class Warrior {
         this.health = health;
     }
 
+    Warrior getSoldierBehind() {
+        return soldierBehind;
+    }
+
+    void setSoldierBehind(Warrior soldierBehind) {
+        this.soldierBehind = soldierBehind;
+    }
+
     public static Warrior getUnit(Class<? extends Warrior> clazz) {
         if (clazz == Warrior.class)
             return new Warrior();
@@ -53,6 +62,8 @@ public class Warrior {
             return new Defender();
         if (clazz == Vampire.class)
             return new Vampire();
+        if (clazz == Lancen.class)
+            return new Lancen();
         throw new NoClassDefFoundError("no such class");
     }
 }

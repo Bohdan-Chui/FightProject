@@ -78,7 +78,24 @@ class ArmyBattleTest {
                                 .addUnit(Warrior.class, 8),
                         new Army().addUnit(Warrior.class, 4)
                                 .addUnit(Defender.class, 4)
-                                .addUnit(Vampire.class, 13), true)
+                                .addUnit(Vampire.class, 13), true),
+// Lancen class added
+                Arguments.of(new Army().addUnit(Lancen.class, 5)
+                                .addUnit(Vampire.class, 3)
+                                .addUnit(Warrior.class, 4)
+                                .addUnit(Defender.class, 2),
+                        new Army().addUnit(Warrior.class, 4)
+                                .addUnit(Defender.class, 4)
+                                .addUnit(Vampire.class, 6)
+                                .addUnit(Lancen.class, 5), false),
+                        Arguments.of(new Army().addUnit(Lancen.class, 7)
+                                        .addUnit(Vampire.class, 3)
+                                        .addUnit(Warrior.class, 4)
+                                        .addUnit(Defender.class, 2),
+                                new Army().addUnit(Warrior.class, 4)
+                                        .addUnit(Defender.class, 4)
+                                        .addUnit(Vampire.class, 6)
+                                        .addUnit(Lancen.class, 4), true)
         );
     }
 }
