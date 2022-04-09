@@ -2,12 +2,13 @@ package com.project.model.impl;
 
 public class Warrior {
 
-    private static int attack = 5;
+    private static final int ATTACK = 5;
+    private static final int START_HEALTH = 50;
     private int health;
 
 
     public Warrior() {
-        this(50);
+        this(START_HEALTH);
     }
 
     protected Warrior(int i) {
@@ -19,11 +20,15 @@ public class Warrior {
     }
 
     public int getAttack() {
-        return attack;
+        return ATTACK;
     }
 
-    public void damage(int damage) {
+    public int takeDamage(int damage) {
         this.health -= damage;
+        return damage;
+    }
+    public int doDamage(Warrior warrior){
+        return warrior.takeDamage(this.attack());
     }
 
     public boolean isAlive() {

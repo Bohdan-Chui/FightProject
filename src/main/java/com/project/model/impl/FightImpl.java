@@ -12,11 +12,11 @@ public class FightImpl implements Fight {
             return true;
 
         while (true) {
-            enemy2.damage(enemy1.attack());
+            enemy1.doDamage(enemy2);
             if (!enemy2.isAlive())
                 return true;
 
-            enemy1.damage(enemy2.attack());
+            enemy2.doDamage(enemy1);
             if (!enemy1.isAlive())
                 return false;
         }

@@ -3,7 +3,7 @@ package com.project.model.impl;
 import java.util.ArrayList;
 
 public class Army {
-    private ArrayList<Warrior> unitList;
+    private final ArrayList<Warrior> unitList;
     private int aliveIndex;
 
     public Army() {

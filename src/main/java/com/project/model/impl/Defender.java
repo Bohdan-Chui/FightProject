@@ -1,22 +1,24 @@
 package com.project.model.impl;
 
 public class Defender extends Warrior{
-    private static int attack = 3;
-    private static int defence = 2;
+    private static final int ATTACK = 3;
+    private static final int DEFENCE = 2;
+    private static final int START_HEALTH = 60;
 
     public Defender() {
-        super(60);
+        super(START_HEALTH);
     }
 
     @Override
     public int getAttack() {
-        return attack;
+        return ATTACK;
     }
 
     @Override
-    public void damage(int damage) {
-        if(damage > defence){
-            super.damage(damage - defence);
+    public int takeDamage(int damage) {
+        if(damage > DEFENCE){
+            super.takeDamage(damage - DEFENCE);
         }
+        return damage - DEFENCE;
     }
 }
