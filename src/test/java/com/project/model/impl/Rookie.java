@@ -1,7 +1,7 @@
 package com.project.model.impl;
 
-class Rookie extends  Warrior{
-    private static int attack = 1;
+class Rookie extends Warrior {
+    private static final int ATTACK = 1;
 
     public Rookie() {
         super(50);
@@ -9,6 +9,6 @@ class Rookie extends  Warrior{
 
     @Override
     public int getAttack() {
-        return attack;
+        return ATTACK;
     }
 }

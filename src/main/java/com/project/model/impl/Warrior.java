@@ -27,7 +27,8 @@ public class Warrior {
         this.health -= damage;
         return damage;
     }
-    public int doDamage(Warrior warrior){
+
+    public int doDamage(Warrior warrior) {
         return warrior.takeDamage(this.attack());
     }
 
@@ -39,6 +40,10 @@ public class Warrior {
         return health;
     }
 
+    protected void setHelth(int health){
+        this.health = health;
+    }
+
     public static Warrior getUnit(Class<? extends Warrior> clazz) {
         if (clazz == Warrior.class)
             return new Warrior();
@@ -46,6 +51,8 @@ public class Warrior {
             return new Knight();
         if (clazz == Defender.class)
             return new Defender();
+        if (clazz == Vampire.class)
+            return new Vampire();
         throw new NoClassDefFoundError("no such class");
     }
 }

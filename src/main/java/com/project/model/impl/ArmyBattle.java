@@ -11,15 +11,15 @@ public class ArmyBattle {
 
     public boolean fight(Army army1, Army army2) {
 
-        do{
+        do {
             Warrior warrior1 = army1.getUnit();
             Warrior warrior2 = army2.getUnit();
-            if(warrior1 == null)
+            if (warrior1 == null)
                 return false;
-            if(warrior2 == null)
+            if (warrior2 == null)
                 return true;
-            fight.fight(warrior1,warrior2);
-        }while (true);
+            fight.fight(warrior1, warrior2);
+        } while (true);
 
     }
 }

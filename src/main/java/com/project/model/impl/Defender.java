@@ -1,6 +1,6 @@
 package com.project.model.impl;
 
-public class Defender extends Warrior{
+public class Defender extends Warrior {
     private static final int ATTACK = 3;
     private static final int DEFENCE = 2;
     private static final int START_HEALTH = 60;
@@ -16,7 +16,7 @@ public class Defender extends Warrior{
 
     @Override
     public int takeDamage(int damage) {
-        if(damage > DEFENCE){
+        if (damage > DEFENCE) {
             super.takeDamage(damage - DEFENCE);
         }
         return damage - DEFENCE;

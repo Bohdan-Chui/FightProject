@@ -53,7 +53,32 @@ class ArmyBattleTest {
                 Arguments.of(new Army().addUnit(Defender.class, 2)
                                 .addUnit(Warrior.class, 1)
                                 .addUnit(Defender.class, 1),
-                        new Army().addUnit(Warrior.class, 5), false)
+                        new Army().addUnit(Warrior.class, 5), false),
+// Vampire class tests
+                Arguments.of(new Army().addUnit(Defender.class, 5)
+                                .addUnit(Vampire.class, 6)
+                                .addUnit(Warrior.class, 7),
+                        new Army().addUnit(Warrior.class, 6)
+                                .addUnit(Defender.class, 6)
+                                .addUnit(Vampire.class, 6), false),
+                Arguments.of(new Army().addUnit(Defender.class, 2)
+                                .addUnit(Vampire.class, 3)
+                                .addUnit(Warrior.class, 4),
+                        new Army().addUnit(Warrior.class, 4)
+                                .addUnit(Defender.class, 4)
+                                .addUnit(Vampire.class, 3), false),
+                Arguments.of(new Army().addUnit(Defender.class, 11)
+                                .addUnit(Vampire.class, 3)
+                                .addUnit(Warrior.class, 4),
+                        new Army().addUnit(Warrior.class, 4)
+                                .addUnit(Defender.class, 4)
+                                .addUnit(Vampire.class, 13), true),
+                Arguments.of(new Army().addUnit(Defender.class, 9)
+                                .addUnit(Vampire.class, 3)
+                                .addUnit(Warrior.class, 8),
+                        new Army().addUnit(Warrior.class, 4)
+                                .addUnit(Defender.class, 4)
+                                .addUnit(Vampire.class, 13), true)
         );
     }
 }
