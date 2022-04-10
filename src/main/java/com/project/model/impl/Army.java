@@ -14,8 +14,8 @@ public class Army {
     public Army addUnit(Class<? extends Warrior> clas, int i) {
         for (int j = 0; j < i; j++) {
             unitList.add(Warrior.getUnit(clas));
-            if(j != 0)
-                unitList.get(j-1).setSoldierBehind(unitList.get(j));
+            if (j != 0)
+                unitList.get(j - 1).setSoldierBehind(unitList.get(j));
         }
         return this;
     }

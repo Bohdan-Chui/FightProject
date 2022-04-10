@@ -7,7 +7,6 @@ public class Warrior {
     private Warrior soldierBehind;
     private int health;
 
-
     public Warrior() {
         this(START_HEALTH);
     }
@@ -41,15 +40,15 @@ public class Warrior {
         return health;
     }
 
-    protected void setHelth(int health){
+    protected void setHelth(int health) {
         this.health = health;
     }
 
-    Warrior getSoldierBehind() {
+    protected Warrior getSoldierBehind() {
         return soldierBehind;
     }
 
-    void setSoldierBehind(Warrior soldierBehind) {
+    protected void setSoldierBehind(Warrior soldierBehind) {
         this.soldierBehind = soldierBehind;
     }
 

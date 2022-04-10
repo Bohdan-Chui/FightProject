@@ -19,7 +19,7 @@ public class Vampire extends Warrior {
     public int doDamage(Warrior warrior) {
         int damage = warrior.takeDamage(this.getAttack());
         this.setHelth(getHealth() + damage * VAMPIRISM / 100);
-        if(getHealth() > START_HEALTH)
+        if (getHealth() > START_HEALTH)
             this.setHelth(START_HEALTH);
         return damage;
     }
