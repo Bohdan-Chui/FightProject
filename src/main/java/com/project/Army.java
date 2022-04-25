@@ -1,6 +1,9 @@
-package com.project.model.impl;
+package com.project;
+
+import com.project.model.impl.Warrior;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Army {
     private final ArrayList<Warrior> unitList;
@@ -11,14 +14,23 @@ public class Army {
         aliveIndex = 0;
     }
 
-    public Army addUnit(Class<? extends Warrior> clas, int i) {
-        for (int j = 0; j < i; j++) {
+    public Army addUnits(Class<? extends Warrior> clas, int i) {
+        for (int j = 0; j < i; j++)
             unitList.add(Warrior.getUnit(clas));
-            if (j != 0)
-                unitList.get(j - 1).setSoldierBehind(unitList.get(j));
-        }
+        setBehinds();
         return this;
     }
+    private void setBehinds(){
+        Iterator<Warrior> iterator = unitList.iterator();
+        Warrior warrior = iterator.next();
+        while (iterator.hasNext()){
+            Warrior warrior1 = iterator.next();
+            warrior.setSoldierBehind(warrior1);
+            warrior = warrior1;
+        }
+    }
+
+
 
     public Warrior getUnit() {
         if (unitList.get(aliveIndex).isAlive())

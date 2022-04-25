@@ -48,7 +48,7 @@ public class Warrior {
         return soldierBehind;
     }
 
-    protected void setSoldierBehind(Warrior soldierBehind) {
+    public void setSoldierBehind(Warrior soldierBehind) {
         this.soldierBehind = soldierBehind;
     }
 

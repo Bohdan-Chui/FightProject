@@ -1,5 +1,7 @@
 package com.project.model.impl;
 
+import com.project.Army;
+import com.project.ArmyBattle;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,74 +30,74 @@ class ArmyBattleTest {
 
     private static Stream<Arguments> fight() {
         return Stream.of(
-                Arguments.of(new Army().addUnit(Warrior.class, 1), new Army().addUnit(Warrior.class, 2), false),
-                Arguments.of(new Army().addUnit(Warrior.class, 2), new Army().addUnit(Warrior.class, 3), false),
-                Arguments.of(new Army().addUnit(Warrior.class, 5), new Army().addUnit(Warrior.class, 7), false),
-                Arguments.of(new Army().addUnit(Warrior.class, 20), new Army().addUnit(Warrior.class, 21), true),
-                Arguments.of(new Army().addUnit(Warrior.class, 10), new Army().addUnit(Warrior.class, 11), true),
-                Arguments.of(new Army().addUnit(Warrior.class, 11), new Army().addUnit(Warrior.class, 7), true),
+                Arguments.of(new Army().addUnits(Warrior.class, 1), new Army().addUnits(Warrior.class, 2), false),
+                Arguments.of(new Army().addUnits(Warrior.class, 2), new Army().addUnits(Warrior.class, 3), false),
+                Arguments.of(new Army().addUnits(Warrior.class, 5), new Army().addUnits(Warrior.class, 7), false),
+                Arguments.of(new Army().addUnits(Warrior.class, 20), new Army().addUnits(Warrior.class, 21), true),
+                Arguments.of(new Army().addUnits(Warrior.class, 10), new Army().addUnits(Warrior.class, 11), true),
+                Arguments.of(new Army().addUnits(Warrior.class, 11), new Army().addUnits(Warrior.class, 7), true),
 
-                Arguments.of(new Army().addUnit(Warrior.class, 5)
-                                .addUnit(Defender.class, 4)
-                                .addUnit(Defender.class, 5),
-                        new Army().addUnit(Warrior.class, 4), true),
+                Arguments.of(new Army().addUnits(Warrior.class, 5)
+                                .addUnits(Defender.class, 4)
+                                .addUnits(Defender.class, 5),
+                        new Army().addUnits(Warrior.class, 4), true),
 
-                Arguments.of(new Army().addUnit(Defender.class, 5)
-                                .addUnit(Warrior.class, 20)
-                                .addUnit(Defender.class, 4),
-                        new Army().addUnit(Warrior.class, 21), true),
+                Arguments.of(new Army().addUnits(Defender.class, 5)
+                                .addUnits(Warrior.class, 20)
+                                .addUnits(Defender.class, 4),
+                        new Army().addUnits(Warrior.class, 21), true),
 
-                Arguments.of(new Army().addUnit(Warrior.class, 10)
-                                .addUnit(Defender.class, 5)
-                                .addUnit(Defender.class, 10),
-                        new Army().addUnit(Warrior.class, 5), true),
+                Arguments.of(new Army().addUnits(Warrior.class, 10)
+                                .addUnits(Defender.class, 5)
+                                .addUnits(Defender.class, 10),
+                        new Army().addUnits(Warrior.class, 5), true),
 
-                Arguments.of(new Army().addUnit(Defender.class, 2)
-                                .addUnit(Warrior.class, 1)
-                                .addUnit(Defender.class, 1),
-                        new Army().addUnit(Warrior.class, 5), false),
+                Arguments.of(new Army().addUnits(Defender.class, 2)
+                                .addUnits(Warrior.class, 1)
+                                .addUnits(Defender.class, 1),
+                        new Army().addUnits(Warrior.class, 5), false),
 // Vampire class tests
-                Arguments.of(new Army().addUnit(Defender.class, 5)
-                                .addUnit(Vampire.class, 6)
-                                .addUnit(Warrior.class, 7),
-                        new Army().addUnit(Warrior.class, 6)
-                                .addUnit(Defender.class, 6)
-                                .addUnit(Vampire.class, 6), false),
-                Arguments.of(new Army().addUnit(Defender.class, 2)
-                                .addUnit(Vampire.class, 3)
-                                .addUnit(Warrior.class, 4),
-                        new Army().addUnit(Warrior.class, 4)
-                                .addUnit(Defender.class, 4)
-                                .addUnit(Vampire.class, 3), false),
-                Arguments.of(new Army().addUnit(Defender.class, 11)
-                                .addUnit(Vampire.class, 3)
-                                .addUnit(Warrior.class, 4),
-                        new Army().addUnit(Warrior.class, 4)
-                                .addUnit(Defender.class, 4)
-                                .addUnit(Vampire.class, 13), true),
-                Arguments.of(new Army().addUnit(Defender.class, 9)
-                                .addUnit(Vampire.class, 3)
-                                .addUnit(Warrior.class, 8),
-                        new Army().addUnit(Warrior.class, 4)
-                                .addUnit(Defender.class, 4)
-                                .addUnit(Vampire.class, 13), true),
+                Arguments.of(new Army().addUnits(Defender.class, 5)
+                                .addUnits(Vampire.class, 6)
+                                .addUnits(Warrior.class, 7),
+                        new Army().addUnits(Warrior.class, 6)
+                                .addUnits(Defender.class, 6)
+                                .addUnits(Vampire.class, 6), false),
+                Arguments.of(new Army().addUnits(Defender.class, 2)
+                                .addUnits(Vampire.class, 3)
+                                .addUnits(Warrior.class, 4),
+                        new Army().addUnits(Warrior.class, 4)
+                                .addUnits(Defender.class, 4)
+                                .addUnits(Vampire.class, 3), false),
+                Arguments.of(new Army().addUnits(Defender.class, 11)
+                                .addUnits(Vampire.class, 3)
+                                .addUnits(Warrior.class, 4),
+                        new Army().addUnits(Warrior.class, 4)
+                                .addUnits(Defender.class, 4)
+                                .addUnits(Vampire.class, 13), true),
+                Arguments.of(new Army().addUnits(Defender.class, 9)
+                                .addUnits(Vampire.class, 3)
+                                .addUnits(Warrior.class, 8),
+                        new Army().addUnits(Warrior.class, 4)
+                                .addUnits(Defender.class, 4)
+                                .addUnits(Vampire.class, 13), true),
 // Lancen class added
-                Arguments.of(new Army().addUnit(Lancen.class, 5)
-                                .addUnit(Vampire.class, 3)
-                                .addUnit(Warrior.class, 4)
-                                .addUnit(Defender.class, 2),
-                        new Army().addUnit(Warrior.class, 4)
-                                .addUnit(Defender.class, 4)
-                                .addUnit(Vampire.class, 6)
-                                .addUnit(Lancen.class, 5), false),
-                Arguments.of(new Army().addUnit(Lancen.class, 7)
-                                .addUnit(Vampire.class, 3)
-                                .addUnit(Warrior.class, 4)
-                                .addUnit(Defender.class, 2),
-                        new Army().addUnit(Warrior.class, 4)
-                                .addUnit(Defender.class, 4)
-                                .addUnit(Vampire.class, 6)
-                                .addUnit(Lancen.class, 4), true)
+                Arguments.of(new Army().addUnits(Lancen.class, 5)
+                                .addUnits(Vampire.class, 3)
+                                .addUnits(Warrior.class, 4)
+                                .addUnits(Defender.class, 2),
+                        new Army().addUnits(Warrior.class, 4)
+                                .addUnits(Defender.class, 4)
+                                .addUnits(Vampire.class, 6)
+                                .addUnits(Lancen.class, 5), false),
+                Arguments.of(new Army().addUnits(Lancen.class, 7)
+                                .addUnits(Vampire.class, 3)
+                                .addUnits(Warrior.class, 4)
+                                .addUnits(Defender.class, 2),
+                        new Army().addUnits(Warrior.class, 4)
+                                .addUnits(Defender.class, 4)
+                                .addUnits(Vampire.class, 6)
+                                .addUnits(Lancen.class, 4), true)
         );
     }
 }
