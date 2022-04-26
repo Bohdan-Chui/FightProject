@@ -1,6 +1,7 @@
 package com.project;
 
-import com.project.model.impl.Warrior;
+import com.project.model.enemy.Enemy;
+import com.project.model.enemy.Warrior;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,9 +15,9 @@ public class Army {
         aliveIndex = 0;
     }
 
-    public Army addUnits(Class<? extends Warrior> clas, int i) {
+    public Army addUnits(Enemy.Type type, int i) {
         for (int j = 0; j < i; j++)
-            unitList.add(Warrior.getUnit(clas));
+            unitList.add(Warrior.getUnit(type));
         setBehinds();
         return this;
     }
@@ -29,8 +30,6 @@ public class Army {
             warrior = warrior1;
         }
     }
-
-
 
     public Warrior getUnit() {
         if (unitList.get(aliveIndex).isAlive())

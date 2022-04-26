@@ -1,8 +1,8 @@
 package com.project;
 
 import com.project.model.Fight;
-import com.project.model.impl.FightImpl;
-import com.project.model.impl.Warrior;
+import com.project.model.FightImpl;
+import com.project.model.enemy.Warrior;
 
 public class ArmyBattle {
     Fight fight;

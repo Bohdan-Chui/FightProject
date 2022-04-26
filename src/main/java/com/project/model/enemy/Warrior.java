@@ -1,6 +1,6 @@
-package com.project.model.impl;
+package com.project.model.enemy;
 
-public class Warrior {
+public class Warrior extends Enemy{
 
     private static final int ATTACK = 5;
     private static final int START_HEALTH = 50;
@@ -29,6 +29,9 @@ public class Warrior {
     }
 
     public int doDamage(Warrior warrior) {
+        if (this.soldierBehind instanceof Healer) {
+            ((Healer) getSoldierBehind()).heal(this);
+        }
         return warrior.takeDamage(this.attack());
     }
 
@@ -48,21 +51,22 @@ public class Warrior {
         return soldierBehind;
     }
 
+    public int getStartHealth() {
+        return START_HEALTH;
+    }
+
     public void setSoldierBehind(Warrior soldierBehind) {
         this.soldierBehind = soldierBehind;
     }
 
-    public static Warrior getUnit(Class<? extends Warrior> clazz) {
-        if (clazz == Warrior.class)
-            return new Warrior();
-        if (clazz == Knight.class)
-            return new Knight();
-        if (clazz == Defender.class)
-            return new Defender();
-        if (clazz == Vampire.class)
-            return new Vampire();
-        if (clazz == Lancen.class)
-            return new Lancen();
-        throw new NoClassDefFoundError("no such class");
+    public static Warrior getUnit(Type type) {
+        return switch (type){
+            case WARRIOR -> new Warrior();
+            case KNIGHT -> new Knight();
+            case DEFENDER -> new Defender();
+            case VAMPIRE -> new Vampire();
+            case LANCER -> new Lancer();
+            case HEALER -> new Healer();
+        };
     }
 }

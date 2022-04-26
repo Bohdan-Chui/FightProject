@@ -1,6 +1,6 @@
-package com.project.model.impl;
+package com.project.model;
 
-import com.project.model.Fight;
+import com.project.model.enemy.Warrior;
 
 public class FightImpl implements Fight {
     @Override

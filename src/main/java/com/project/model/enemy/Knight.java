@@ -1,4 +1,4 @@
-package com.project.model.impl;
+package com.project.model.enemy;
 
 public class Knight extends Warrior {
 
@@ -8,7 +8,10 @@ public class Knight extends Warrior {
     public Knight() {
         super(START_HEALTH);
     }
-
+    @Override
+    public int getStartHealth() {
+        return START_HEALTH;
+    }
     @Override
     public int getAttack() {
         return ATTACK;

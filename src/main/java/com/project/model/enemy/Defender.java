@@ -1,4 +1,4 @@
-package com.project.model.impl;
+package com.project.model.enemy;
 
 public class Defender extends Warrior {
     private static final int ATTACK = 3;
@@ -14,6 +14,10 @@ public class Defender extends Warrior {
         return ATTACK;
     }
 
+    @Override
+    public int getStartHealth() {
+        return START_HEALTH;
+    }
     @Override
     public int takeDamage(int damage) {
         if (damage > DEFENCE) {

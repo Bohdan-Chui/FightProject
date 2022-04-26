@@ -1,4 +1,4 @@
-package com.project.model.impl;
+package com.project.model.enemy;
 
 class Rookie extends Warrior {
     private static final int ATTACK = 1;

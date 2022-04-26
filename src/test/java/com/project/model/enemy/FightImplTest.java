@@ -1,9 +1,10 @@
-package com.project.model.impl;
+package com.project.model.enemy;
 
 import com.project.model.Fight;
 
 import static org.junit.Assert.*;
 
+import com.project.model.FightImpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

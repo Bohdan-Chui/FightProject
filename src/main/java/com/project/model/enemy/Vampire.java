@@ -1,4 +1,4 @@
-package com.project.model.impl;
+package com.project.model.enemy;
 
 public class Vampire extends Warrior {
 
@@ -14,7 +14,10 @@ public class Vampire extends Warrior {
     public int getAttack() {
         return ATTACK;
     }
-
+    @Override
+    public int getStartHealth() {
+        return START_HEALTH;
+    }
     @Override
     public int doDamage(Warrior warrior) {
         int damage = warrior.takeDamage(this.getAttack());
