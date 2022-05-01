@@ -4,10 +4,11 @@ import com.project.model.army.EventMaker;
 import com.project.model.army.impl.Solder;
 import com.project.model.army.Subscriber;
 import com.project.model.enemy.Enemy;
+import com.project.model.weapon.Weapon;
 
 public class Healer extends Enemy implements Subscriber {
 
-    private static final int HEAL = 2;
+    private int heal = 2;
 
     public Healer() {
         super(60, 0);
@@ -19,6 +20,14 @@ public class Healer extends Enemy implements Subscriber {
     }
 
     public void heal(Solder solder) {
-        ((Enemy) solder.getWrapped()).healMe(HEAL);
+        ((Enemy) solder.getWrapped()).healMe(heal);
+    }
+
+    @Override
+    public void equipWeapon(Weapon weapon) {
+        this.startHealth = Math.max(0, startHealth + weapon.getHealth());
+        this.health = Math.max(0, health + weapon.getHealth());
+        this.attack = Math.max(0, attack + weapon.getAttack());
+        this.heal =  Math.max(0, heal + weapon.getHealPower());
     }
 }

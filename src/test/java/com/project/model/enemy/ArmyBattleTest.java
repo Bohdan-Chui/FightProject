@@ -19,13 +19,6 @@ class ArmyBattleTest {
         assertEquals(expected, boo);
     }
 
-    @ParameterizedTest
-    @MethodSource
-    void straightFight(Army army1, Army army2, boolean expected) {
-        boolean boo = Fight.straightFight(army1, army2);
-        assertEquals(expected, boo);
-    }
-
     private static Stream<Arguments> fight() {
         return Stream.of(
 
@@ -41,17 +34,17 @@ class ArmyBattleTest {
                         new Army().addUnits("WARRIOR", 11), true),
                 Arguments.of(new Army().addUnits("WARRIOR", 11),
                         new Army().addUnits("WARRIOR", 7), true),
-//7
+        //7 - 9
                 Arguments.of(new Army().addUnits("WARRIOR", 5)
                                 .addUnits("DEFENDER", 4)
                                 .addUnits("DEFENDER", 5),
                         new Army().addUnits("WARRIOR", 4), true),
-//8
+
                 Arguments.of(new Army().addUnits("DEFENDER", 5)
                                 .addUnits("WARRIOR", 20)
                                 .addUnits("DEFENDER", 4),
                         new Army().addUnits("WARRIOR", 21), true),
-//9
+
                 Arguments.of(new Army().addUnits("WARRIOR", 10)
                                 .addUnits("DEFENDER", 5)
                                 .addUnits("DEFENDER", 10),
@@ -61,7 +54,7 @@ class ArmyBattleTest {
                                 .addUnits("WARRIOR", 1)
                                 .addUnits("DEFENDER", 1),
                         new Army().addUnits("WARRIOR", 5), false),
-// Vampire class tests 11-14
+        // Vampire class tests 11-14
                 Arguments.of(new Army().addUnits("DEFENDER", 5)
                                 .addUnits("VAMPIRE", 6)
                                 .addUnits("WARRIOR", 7),
@@ -94,8 +87,7 @@ class ArmyBattleTest {
                                 .addUnits("DEFENDER", 4)
                                 .addUnits("VAMPIRE", 13), true),
 
-
-// Lancer class added 15-16
+        // Lancer class added 15-16
                 Arguments.of(new Army()
                                 .addUnits("LANCER", 5)
                                 .addUnits("VAMPIRE", 3)
@@ -144,59 +136,5 @@ class ArmyBattleTest {
                                 .addUnits("VAMPIRE", 6)
                                 .addUnits("LANCER", 4), false)
         );
-    }
-
-
-    private static Stream<Arguments> straightFight() {
-
-        return Stream.of(
-
-//                19-22
-                Arguments.of(new Army()
-                                .addUnits("LANCER", 5)
-                                .addUnits("VAMPIRE", 3)
-                                .addUnits("WARRIOR", 4)
-                                .addUnits("DEFENDER", 2),
-                        new Army()
-                                .addUnits("WARRIOR", 4)
-                                .addUnits("DEFENDER", 4)
-                                .addUnits("VAMPIRE", 6)
-                                .addUnits("LANCER", 5), false),
-                Arguments.of(new Army()
-                                .addUnits("LANCER", 7)
-                                .addUnits("VAMPIRE", 3)
-                                .addUnits("WARRIOR", 4)
-                                .addUnits("DEFENDER", 2),
-                        new Army()
-                                .addUnits("WARRIOR", 4)
-                                .addUnits("DEFENDER", 4)
-                                .addUnits("VAMPIRE", 6)
-                                .addUnits("LANCER", 4), true),
-                Arguments.of(new Army()
-                                .addUnits("LANCER", 7)
-                                .addUnits("VAMPIRE", 3)
-                                .addUnits("HEALER", 1)
-                                .addUnits("WARRIOR", 4)
-                                .addUnits("HEALER", 1)
-                                .addUnits("DEFENDER", 2),
-                        new Army()
-                                .addUnits("WARRIOR", 4)
-                                .addUnits("DEFENDER", 4)
-                                .addUnits("HEALER", 1)
-                                .addUnits("VAMPIRE", 6)
-                                .addUnits("LANCER", 4), false),
-                Arguments.of(new Army()
-                                .addUnits("LANCER", 4)
-                                .addUnits("WARRIOR", 3)
-                                .addUnits("HEALER", 1)
-                                .addUnits("WARRIOR", 4)
-                                .addUnits("HEALER", 1)
-                                .addUnits("KNIGHT", 2),
-                        new Army()
-                                .addUnits("WARRIOR", 4)
-                                .addUnits("DEFENDER", 4)
-                                .addUnits("HEALER", 1)
-                                .addUnits("VAMPIRE", 2)
-                                .addUnits("LANCER", 4), true));
     }
 }

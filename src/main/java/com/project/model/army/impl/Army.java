@@ -66,4 +66,8 @@ public class Army {
     public void filterArmyFromDied() {
         unitList = unitList.stream().filter(Solder::isAlive).collect(Collectors.toList());
     }
+
+    public Solder getByIndex(int index){
+        return unitList.get(index);
+    }
 }

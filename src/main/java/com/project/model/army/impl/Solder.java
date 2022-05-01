@@ -5,6 +5,7 @@ import com.project.model.army.Linked;
 import com.project.model.army.Subscriber;
 import com.project.model.enemy.Enemy;
 import com.project.model.Fightable;
+import com.project.model.weapon.Weapon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 public class Solder implements Linked, Fightable, EventMaker {
 
     private final List<Subscriber> subscribers = new ArrayList<>();
+    private final List<Weapon> weapons = new ArrayList<>();
     private final Fightable wrapped;
     private Solder behind;
 
@@ -64,5 +66,11 @@ public class Solder implements Linked, Fightable, EventMaker {
         for (Subscriber subscriber : subscribers) {
             subscriber.action(this);
         }
+    }
+
+    @Override
+    public void equipWeapon(Weapon weapon){
+        weapons.add(weapon);
+        wrapped.equipWeapon(weapon);
     }
 }

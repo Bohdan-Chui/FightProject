@@ -13,10 +13,18 @@ public class Lancer extends Enemy {
     }
 
     @Override
-    public int hit(Fightable warrior) {
+    public int hit(Fightable fightable) {
+        if (fightable instanceof Solder solder) {
+            return hit(solder);
+        } else {
+            return fightable.getDamage(this.getAttack());
+        }
+    }
+
+    public int hit(Solder warrior) {
         int damage = warrior.getDamage(this.getAttack());
-        if (((Solder) warrior).getBehind() != null)
-            ((Solder) warrior).getBehind().getDamage(damage / DAMAGE_DIVIDER);
+        if (warrior.getBehind() != null)
+            warrior.getBehind().getDamage(damage / DAMAGE_DIVIDER);
         return damage;
     }
 
