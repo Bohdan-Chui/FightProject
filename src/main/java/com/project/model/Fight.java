@@ -32,6 +32,8 @@ public class Fight {
         army1.prepareArmy();
         army2.prepareArmy();
         do {
+            army1.moveUnits();
+            army2.moveUnits();
             Fightable warrior1 = army1.getAliveFighter();
             Fightable warrior2 = army2.getAliveFighter();
             if (warrior1 == null)
@@ -54,6 +56,8 @@ public class Fight {
         army1.filterArmyFromDied();
         army2.filterArmyFromDied();
 
+        army1.moveUnits();
+        army2.moveUnits();
         if (army1.size() == 0) {
             return false;
         }

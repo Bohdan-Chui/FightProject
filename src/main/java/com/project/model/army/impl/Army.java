@@ -1,7 +1,11 @@
 package com.project.model.army.impl;
 
 import com.project.model.army.Subscriber;
+import com.project.model.enemy.Enemy;
 import com.project.model.enemy.EnemyFactory;
+import com.project.model.enemy.impl.Healer;
+import com.project.model.enemy.impl.Lancer;
+import com.project.model.enemy.impl.Warlord;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -67,7 +71,38 @@ public class Army {
         unitList = unitList.stream().filter(Solder::isAlive).collect(Collectors.toList());
     }
 
-    public Solder getByIndex(int index){
+    public Solder getByIndex(int index) {
         return unitList.get(index);
     }
+
+    private List<Solder> getEnemiesByClass(Class<? extends Enemy> enemyClass) {
+        List<Solder> result = unitList.stream().filter(n -> n.getWrapped().getClass() == enemyClass).toList();
+        unitList.removeAll(result);
+        return result;
+    }
+    private Optional<Solder> getEnemyByClass(Class<? extends Enemy> enemyClass) {
+        Optional<Solder> result = unitList.stream().filter(n -> n.getWrapped().getClass() == enemyClass).findFirst();
+        result.ifPresent(solder -> unitList.remove(solder));
+        return result;
+    }
+
+    public void moveUnits() {
+        Optional<Solder> warlord = getEnemyByClass(Warlord.class);
+        if (warlord.isEmpty()) {
+            return;
+        }
+        List<Solder> result = new ArrayList<>(getEnemiesByClass(Lancer.class));
+        List<Solder> healers = getEnemiesByClass(Healer.class);
+        result.addAll(unitList);
+        healers.forEach(healer -> {
+            if (result.size() > 2) {
+                result.add(1, healer);
+            } else {
+                result.add(healer);
+            }
+        });
+        result.add(warlord.get());
+        unitList = result;
+    }
+
 }

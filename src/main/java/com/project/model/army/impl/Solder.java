@@ -73,4 +73,5 @@ public class Solder implements Linked, Fightable, EventMaker {
         weapons.add(weapon);
         wrapped.equipWeapon(weapon);
     }
+
 }

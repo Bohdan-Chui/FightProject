@@ -20,6 +20,7 @@ public class EnemyFactory {
         fighters.put("vampire", Vampire::new);
         fighters.put("lancer", Lancer::new);
         fighters.put("healer", Healer::new);
+        fighters.put("warlord", Warlord::new);
     }
 
     public Enemy of(String name) {

@@ -3,12 +3,12 @@ package com.project.model.enemy.impl;
 import com.project.model.enemy.Enemy;
 import com.project.model.weapon.Weapon;
 
-public class Defender extends Enemy {
+public class Warlord extends Enemy {
 
     private int defence = 2;
 
-    public Defender() {
-        super(60, 3);
+    public Warlord() {
+        super(100, 4);
     }
 
     @Override
@@ -26,4 +26,5 @@ public class Defender extends Enemy {
         this.attack = Math.max(0, attack + weapon.getAttack());
         this.defence = Math.max(0, defence + weapon.getDefense());
     }
+
 }
