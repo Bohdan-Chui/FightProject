@@ -1,5 +1,6 @@
 package com.project.model.enemy.impl;
 
+import com.project.model.army.ValueEnum;
 import com.project.model.enemy.Enemy;
 import com.project.model.weapon.Weapon;
 
@@ -27,4 +28,8 @@ public class Warlord extends Enemy {
         this.defence = Math.max(0, defence + weapon.getDefense());
     }
 
+    @Override
+    public double getValue() {
+        return ValueEnum.WARLORD_VALUE.getValue();
+    }
 }

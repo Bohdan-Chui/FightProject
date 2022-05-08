@@ -1,9 +1,11 @@
 package com.project.model.enemy;
 
 import com.project.model.Fightable;
+import com.project.model.Valuable;
+import com.project.model.army.ValueEnum;
 import com.project.model.weapon.Weapon;
 
-public abstract class Enemy implements Fightable {
+public abstract class Enemy implements Fightable, Valuable {
 
     protected int startHealth;
     protected int attack;
@@ -46,5 +48,10 @@ public abstract class Enemy implements Fightable {
         this.startHealth = Math.max(0, startHealth + weapon.getHealth());
         this.health = Math.max(0, health + weapon.getHealth());
         this.attack = Math.max(0, attack + weapon.getAttack());
+    }
+
+    @Override
+    public double getValue() {
+        return ValueEnum.ENEMY_VALUE.getValue();
     }
 }

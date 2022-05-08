@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-class FightTest {
+class DuelTest {
 
     @ParameterizedTest
     @MethodSource

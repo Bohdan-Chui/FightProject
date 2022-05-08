@@ -1,7 +1,8 @@
 package com.project.model.army.impl;
 
-import com.project.model.army.EventMaker;
+import com.project.model.army.Publisher;
 import com.project.model.army.Linked;
+import com.project.model.Valuable;
 import com.project.model.army.Subscriber;
 import com.project.model.enemy.Enemy;
 import com.project.model.Fightable;
@@ -10,7 +11,7 @@ import com.project.model.weapon.Weapon;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solder implements Linked, Fightable, EventMaker {
+public class Solder implements Linked, Fightable, Publisher, Valuable {
 
     private final List<Subscriber> subscribers = new ArrayList<>();
     private final List<Weapon> weapons = new ArrayList<>();
@@ -23,7 +24,7 @@ public class Solder implements Linked, Fightable, EventMaker {
 
     @Override
     public int hit(Fightable enemy) {
-        event();
+        notifySubscribers();
         return wrapped.hit(enemy);
     }
 
@@ -57,21 +58,25 @@ public class Solder implements Linked, Fightable, EventMaker {
     }
 
     @Override
-    public void subscribe(Subscriber subscriber) {
+    public void addSubscriber(Subscriber subscriber) {
         subscribers.add(subscriber);
     }
 
     @Override
-    public void event() {
+    public void notifySubscribers() {
         for (Subscriber subscriber : subscribers) {
             subscriber.action(this);
         }
     }
 
     @Override
-    public void equipWeapon(Weapon weapon){
+    public void equipWeapon(Weapon weapon) {
         weapons.add(weapon);
         wrapped.equipWeapon(weapon);
     }
 
+    @Override
+    public double getValue() {
+        return ((Valuable) wrapped).getValue();
+    }
 }

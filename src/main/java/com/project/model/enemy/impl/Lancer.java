@@ -1,5 +1,6 @@
 package com.project.model.enemy.impl;
 
+import com.project.model.army.ValueEnum;
 import com.project.model.army.impl.Solder;
 import com.project.model.enemy.Enemy;
 import com.project.model.Fightable;
@@ -28,5 +29,8 @@ public class Lancer extends Enemy {
         return damage;
     }
 
-
+    @Override
+    public double getValue() {
+        return ValueEnum.LANCER_VALUE.getValue();
+    }
 }

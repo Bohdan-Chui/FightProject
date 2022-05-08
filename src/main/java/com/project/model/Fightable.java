@@ -1,6 +1,5 @@
 package com.project.model;
 
-
 import com.project.model.weapon.Weapon;
 
 public interface Fightable {

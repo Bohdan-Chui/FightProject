@@ -7,10 +7,6 @@ import java.util.Iterator;
 
 public class Fight {
 
-    private Fight() {
-        // class have only static methods
-    }
-
     public static boolean duel(Fightable enemy1, Fightable enemy2) {
         if (!enemy1.isAlive())
             return false;
@@ -56,8 +52,6 @@ public class Fight {
         army1.filterArmyFromDied();
         army2.filterArmyFromDied();
 
-        army1.moveUnits();
-        army2.moveUnits();
         if (army1.size() == 0) {
             return false;
         }

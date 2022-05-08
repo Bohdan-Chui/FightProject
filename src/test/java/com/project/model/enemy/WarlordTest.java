@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class WarlordTest {
 
     @Test
-    void test1() {
+    void test23() {
         var army1 = new Army();
         var army2 = new Army();
         army1.addUnits("WARLORD", 1);
@@ -27,7 +27,7 @@ class WarlordTest {
     }
 
     @Test
-    void test2() {
+    void test24() {
         var army1 = new Army();
         var army2 = new Army();
         army1.addUnits("WARRIOR", 2);
@@ -39,11 +39,11 @@ class WarlordTest {
         army2.addUnits("HEALER", 5);
         army2.addUnits("KNIGHT", 2);
 
-        assertTrue(Fight.battle(army1, army2));
+        assertFalse(Fight.battle(army1, army2));
     }
 
     @Test
-    void test3() {
+    void test25() {
         var army1 = new Army();
         var army2 = new Army();
         army1.addUnits("WARRIOR", 2);
@@ -61,7 +61,7 @@ class WarlordTest {
     }
 
     @Test
-    void test4() {
+    void test26() {
         var army1 = new Army();
         var army2 = new Army();
         army1.addUnits("WARRIOR", 2);
