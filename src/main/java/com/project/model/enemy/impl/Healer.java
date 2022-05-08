@@ -32,4 +32,5 @@ public class Healer extends Enemy implements Subscriber {
     public double getValue() {
         return ValueEnum.HEALER_VALUE.getValue();
     }
+
 }

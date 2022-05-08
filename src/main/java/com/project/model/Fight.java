@@ -28,6 +28,9 @@ public class Fight {
         army1.prepareArmy();
         army2.prepareArmy();
         do {
+
+            army1.filterArmyFromDied();
+            army2.filterArmyFromDied();
             army1.moveUnits();
             army2.moveUnits();
             Fightable warrior1 = army1.getAliveFighter();
@@ -42,8 +45,8 @@ public class Fight {
 
     public static boolean straightFight(Army army1, Army army2) {
 
-        Iterator<Solder> it1 = army1.getIterator();
-        Iterator<Solder> it2 = army2.getIterator();
+        Iterator<Solder> it1 = army1.iterator();
+        Iterator<Solder> it2 = army2.iterator();
 
         while (it1.hasNext() && it2.hasNext()) {
             duel(it1.next(), it2.next());

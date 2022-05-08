@@ -7,4 +7,5 @@ public class Rookie extends Enemy {
     public Rookie() {
         super(50, 1);
     }
+
 }

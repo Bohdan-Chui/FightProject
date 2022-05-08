@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Solder implements Linked, Fightable, Publisher, Valuable {
 
-    private final List<Subscriber> subscribers = new ArrayList<>();
+    private List<Subscriber> subscribers = new ArrayList<>();
     private final List<Weapon> weapons = new ArrayList<>();
     private final Fightable wrapped;
     private Solder behind;
@@ -70,6 +70,11 @@ public class Solder implements Linked, Fightable, Publisher, Valuable {
     }
 
     @Override
+    public void resetSubscribers() {
+        subscribers = new ArrayList<>();
+    }
+
+    @Override
     public void equipWeapon(Weapon weapon) {
         weapons.add(weapon);
         wrapped.equipWeapon(weapon);
@@ -79,4 +84,6 @@ public class Solder implements Linked, Fightable, Publisher, Valuable {
     public double getValue() {
         return ((Valuable) wrapped).getValue();
     }
+
+
 }

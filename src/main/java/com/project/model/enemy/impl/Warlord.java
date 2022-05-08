@@ -32,4 +32,5 @@ public class Warlord extends Enemy {
     public double getValue() {
         return ValueEnum.WARLORD_VALUE.getValue();
     }
+
 }

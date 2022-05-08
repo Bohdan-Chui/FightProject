@@ -31,4 +31,5 @@ public class Vampire extends Enemy {
         this.attack = Math.max(0, attack + weapon.getAttack());
         this.vampirism =  Math.max(0, vampirism + weapon.getVampirism());
     }
+
 }

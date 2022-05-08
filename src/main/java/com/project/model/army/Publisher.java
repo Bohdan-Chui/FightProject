@@ -6,4 +6,6 @@ public interface Publisher {
 
     void notifySubscribers();
 
+    void resetSubscribers();
+
 }

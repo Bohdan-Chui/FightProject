@@ -7,5 +7,6 @@ public interface Linked {
     void setBehind(Solder enemy);
 
     Solder getBehind();
+
 }
 

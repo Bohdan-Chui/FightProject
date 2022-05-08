@@ -7,7 +7,7 @@ import com.project.model.enemy.EnemyFactory;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Army {
+public class Army implements Iterable<Solder> {
 
     private List<Solder> unitList = new ArrayList<>();
 
@@ -35,10 +35,6 @@ public class Army {
         return unitList.size();
     }
 
-    public Iterator<Solder> getIterator() {
-        return unitList.iterator();
-    }
-
     public void filterArmyFromDied() {
         unitList = unitList.stream().filter(Solder::isAlive).collect(Collectors.toList());
     }
@@ -53,24 +49,31 @@ public class Army {
 
     public void moveUnits() {
         List<Solder> warlords = getByValuable(ValueEnum.WARLORD_VALUE.getValue());
+
         if (warlords.isEmpty()) {
             return;
         }
-        List<Solder> lancers = getByValuable(ValueEnum.LANCER_VALUE.getValue());
-        List<Solder> healers = getByValuable(ValueEnum.HEALER_VALUE.getValue());
-        List<Solder> enemies = getByValuable(ValueEnum.ENEMY_VALUE.getValue());
+        unitList.removeAll(warlords);
 
-        List<Solder> resultList = new ArrayList<>(lancers);
-        resultList.addAll(enemies);
-        resultList.addAll(warlords);
-        healers.forEach(healer -> {
-            if (resultList.size() > 2) {
-                resultList.add(1, healer);
-            } else {
-                resultList.add(healer);
-            }
+        Optional<Solder> lancerOptional = getByValuable(ValueEnum.LANCER_VALUE.getValue()).stream()
+                .findFirst();
+        lancerOptional.ifPresent(lancer -> {
+            unitList.remove(lancer);
+            unitList.add(0, lancer);
         });
-        unitList = resultList;
+
+        List<Solder> healers = getByValuable(ValueEnum.HEALER_VALUE.getValue());
+        if (!healers.isEmpty()) {
+            unitList.removeAll(healers);
+            if(unitList.isEmpty()){
+                unitList.addAll(healers);
+            }else {
+                unitList.addAll(1, healers);
+            }
+        }
+
+        unitList.add(warlords.get(0));
+        prepareArmy();
     }
 
     public void prepareArmy() {
@@ -85,8 +88,15 @@ public class Army {
             if (solder.getBehind() == null)
                 return;
             if (solder.getBehind().getWrapped() instanceof Subscriber subscriber) {
+                solder.resetSubscribers();
                 solder.addSubscriber(subscriber);
             }
         });
     }
+
+    @Override
+    public Iterator<Solder> iterator() {
+        return unitList.iterator();
+    }
+
 }

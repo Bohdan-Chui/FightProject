@@ -33,4 +33,5 @@ public class Lancer extends Enemy {
     public double getValue() {
         return ValueEnum.LANCER_VALUE.getValue();
     }
+
 }
